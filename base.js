@@ -283,20 +283,20 @@ class Bullet extends RectColored {
 				its orientation appropriately*/
 				if (direct[0]){ //horizontal
 					this.dx *= -1;
-					createSparks(this.x - this.width/2, this.y, "FFFF00");
+					createSparks(this.x - this.width/2, this.y, "FFFFFF");
 				}
 				else if(direct[1]){
 					this.dx *= -1
-					createSparks(this.x + this.width/2, this.y, "FFFF00");
+					createSparks(this.x + this.width/2, this.y, "FFFFFF");
 				}
 
 				if (direct[2]){ //vertical
 					this.dy *= -1;
-					createSparks(this.x, this.y - this.height/2, "FFFF00");
+					createSparks(this.x, this.y - this.height/2, "FFFFFF");
 				}
 				else if(direct[3]){
 					this.dy *= -1;
-					createSparks(this.x, this.y + this.height/2, "FFFF00");
+					createSparks(this.x, this.y + this.height/2, "FFFFFF");
 				}
 
 				this.collisionCounter+=1;
@@ -312,20 +312,20 @@ class Bullet extends RectColored {
 				its orientation appropriately*/
 				if (direct[0]){ //horizontal
 					this.dx *= -1;
-					createSparks(this.x - this.width/2, this.y, "FFFF00");
+					createSparks(this.x - this.width/2, this.y, "FFFFFF");
 				}
 				else if(direct[1]){
 					this.dx *= -1
-					createSparks(this.x + this.width/2, this.y, "FFFF00");
+					createSparks(this.x + this.width/2, this.y, "FFFFFF");
 				}
 
 				if (direct[2]){ //vertical
 					this.dy *= -1;
-					createSparks(this.x, this.y - this.height/2, "FFFF00");
+					createSparks(this.x, this.y - this.height/2, "FFFFFF");
 				}
 				else if(direct[3]){
 					this.dy *= -1;
-					createSparks(this.x, this.y + this.height/2, "FFFF00");
+					createSparks(this.x, this.y + this.height/2, "FFFFFF");
 				}
 
 				this.collisionCounter+=1;
@@ -357,7 +357,7 @@ class Bullet extends RectColored {
 		}
 		for (var i = 0; i < absorbArray.length; i++) {
 			if(checkCollision(this, absorbArray[i])){
-				createSparks(this.x, this.y, absorbArray[i].color);
+				createSparks(this.x, this.y, "#006600");
 				bulletArray.splice(bulletArray.indexOf(this), 1);
 			}
 		}

@@ -14,13 +14,13 @@
 		background-color: #FF0000;
 	}
 	#start{
-		top: 400;
-	}
-	#help{
-		top: 600;
+		bottom: 375;
 	}
 	#survival{
-		top: 500;
+		bottom: 275;
+	}
+	#help{
+		bottom: 175;
 	}
 </style>
 <body style = "margin: 0">
@@ -33,7 +33,7 @@
 	startScreenY = 0;
 	function tiles(){
 		ctx.fillStyle = "#110422";
-		ctx.fillRect(0, 0, canvas.width, canvas.height);
+		ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
 		ctx.fillStyle = "#8844cc";
 		startScreenX += window.innerWidth / (44*50);
 		startScreenY += window.innerHeight / (44*50);
@@ -52,7 +52,7 @@
 		ctx.textAlign = "center";
 		ctx.font = "100px Arial";
 		ctx.strokeStyle = "#ffffff";
-		ctx.strokeText("Gravitron", canvas.width/2, canvas.height/3);
+		ctx.strokeText("Gravitron", window.innerWidth/2, window.innerHeight - 500);
 	}
 	window.onload = function() {
 		canvas = document.getElementById("canvas");

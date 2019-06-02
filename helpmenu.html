@@ -13,6 +13,9 @@
 	.btn:hover{
 		background-color: #FF0000;
 	}
+	body{
+		background-color: #292044;
+	}
 	.gravityBarBack{
 		top: 50px;
 		position: absolute;
@@ -106,11 +109,6 @@
 	}
 	*/
 	function main() {
-		canvas.width = window.innerWidth;
-		canvas.height = window.innerHeight;
-		ctx.fillStyle = "#292044";
-		ctx.fillRect(0,0, window.innerWidth, window.innerHeight);
-		//draws the player
 		ctx.fillStyle = "#00cc00";
 		ctx.beginPath();
 		ctx.arc(canvas.width/10 + 15, 150, 15, 0, 2*Math.PI);
@@ -132,19 +130,19 @@
 </body>
 	<div class="gravityBarBack"></div>
 	<div class="gravityBarFront"></div>
-	<div style="top: 30px; color: white; letter-spacing: 4px; font-size: 20px; margin-left: 20%; position: absolute;"><p>This bar displays the amount of time you can use your gravity. It slowly recharges, but
-		be careful! If it becomes empty, you'll have to wait for it to charge back up. Use the gravity to send the bullets back at the enemies!</p></div>
-	<div style="top: 120px; color: white; letter-spacing: 4px; font-size: 25px; margin-left: 20%; position: absolute;"><p>This is you. (Aren't you fabulous?)</p></div>
+	<div style="top: 30px; color: white; letter-spacing: 4px; font-size: 20px; margin-left: 20%; position: absolute;"><p><font face = "arial">This bar displays the amount of time you can use your gravity. It slowly recharges, but
+		be careful! If it becomes empty, you'll have to wait for it to charge back up. Use the gravity to send the bullets back at the enemies!</font></p></div>
+	<div style="top: 120px; color: white; letter-spacing: 4px; font-size: 25px; margin-left: 20%; position: absolute;"><p><font face = "arial">This is you. (Aren't you fabulous?)</font></p></div>
 	<div class="bullet"></div>
-	<div style="top: 200px; color: white; letter-spacing: 4px; font-size: 25px; margin-left: 20%; position: absolute;"><p>This is a bullet. If it hits you, you die.</p></div>
+	<div style="top: 200px; color: white; letter-spacing: 4px; font-size: 25px; margin-left: 20%; position: absolute;"><p><font face = "arial">This is a bullet. If it hits you, you die.</font></p></div>
 	<div class="permeableWall"></div>
-	<div style="top: 280px; color: white; letter-spacing: 4px; font-size: 25px; margin-left: 20%; position: absolute;"><p>This is a wall that bullets can pass through but you can't.</p></div>
+	<div style="top: 280px; color: white; letter-spacing: 4px; font-size: 25px; margin-left: 20%; position: absolute;"><p><font face = "arial">This is a wall that bullets can pass through but you can't.</font></p></div>
 	<div class="absorbentWall"></div>
-	<div style="top: 360px; color: white; letter-spacing: 4px; font-size: 25px; margin-left: 20%; position: absolute;"><p>If a bullet hits this wall the bullet disappears.</p></div>
+	<div style="top: 360px; color: white; letter-spacing: 4px; font-size: 25px; margin-left: 20%; position: absolute;"><p><font face = "arial">If a bullet hits this wall the bullet disappears.</font></p></div>
 	<div class="wall"></div>
-	<div style="top: 440px; color: white; letter-spacing: 4px; font-size: 25px; margin-left: 20%; position: absolute;"><p>This is a wall that nothing can pass through.</p></div>
+	<div style="top: 440px; color: white; letter-spacing: 4px; font-size: 25px; margin-left: 20%; position: absolute;"><p><font face = "arial">This is a wall that nothing can pass through.</font></p></div>
 	<div class="enemy"></div>
-	<div style="top: 500px; color: white; letter-spacing: 4px; font-size: 25px; margin-left: 20%; position: absolute;"><p>This is an enemy. Some can move.</p></div>
-	<div style="top: 560px; color: white; letter-spacing: 4px; font-size: 25px; margin-left: 20%; position: absolute;"><p>Use the W, A, S, D keys to move, and the SpaceBar to change the gravity around you.</p></div>
+	<div style="top: 500px; color: white; letter-spacing: 4px; font-size: 25px; margin-left: 20%; position: absolute;"><p><font face = "arial">This is an enemy. Some can move.</font></p></div>
+	<div style="top: 560px; color: white; height: 10px; letter-spacing: 4px; font-size: 25px; margin-left: 20%; position: absolute;"><p><font face = "arial">Use the W, A, S, D keys to move, and the SpaceBar to change the gravity around you.</font></p></div>
 
 </html>
