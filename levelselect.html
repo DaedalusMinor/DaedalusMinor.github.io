@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Level Select</title>
+<title>Gravvi | Level Select</title>
 <style>
 
 body{
@@ -29,12 +29,26 @@ body{
   font-size: 30px;
 }
 
-.button:hover{
+#back{
+  position: absolute;
+  width: 100px;
+  margin-right: 50%;
+  margin-left: 1%;
+  height: 40px;
+  background-color: #000000;
+  border: none;
+  top: 40px;
+}
+#back:hover{
+  background-color: #FF0000;
+}
+.btn:hover{
   background-color: #201350;
 }
 </style>
 <body>
   <h1 align="center"><font size="100px" face="Arial" color="white">Level Selector</font></h1>
+  <form><button type = "submit" formaction = "index.html" id = "back"><font face = "arial" size = "6" color = "white" letter-spacing: 4px;> Back </font></button></form>
   <div id="buttonContainer">
 
   </div>
