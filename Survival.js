@@ -2,27 +2,38 @@
 
 //.prototype allows you to edit class functions in base.js
 Bullet.prototype.update = function() {
-	this.y += this.dy;
-	this.x += this.dx;
-	for (var i = 0; i < barrierArray.length; i++) {
-		if (checkCollision(this, barrierArray[i])){
-			var direct = eject(this, barrierArray[i]);
-			/*Checks to see whether the bullet entered the wall horizontally and/or vertically, and changes
-			its orientation appropriately*/
-			if (direct[0] || direct[1]){ //horizontal
-				this.dx *= -1;
-			}
-			if (direct[2] || direct[3]){ //vertical
-				this.dy *= -1;
+		this.y += this.dy;
+		this.x += this.dx;
+		for (var i = 0; i < barrierArray.length; i++) {
+			if (checkCollision(this, barrierArray[i])){
+				var direct = eject(this, barrierArray[i]);
+				/*Checks to see whether the bullet entered the wall horizontally and/or vertically, and changes
+				its orientation appropriately*/
+				if (direct[0]){ //horizontal
+					this.dx *= -1;
+					createSparks(this.x - this.width/2, this.y, "FFFFFF");
+				}
+				else if(direct[1]){
+					this.dx *= -1
+					createSparks(this.x + this.width/2, this.y, "FFFFFF");
+				}
+
+				if (direct[2]){ //vertical
+					this.dy *= -1;
+					createSparks(this.x, this.y - this.height/2, "FFFFFF");
+				}
+				else if(direct[3]){
+					this.dy *= -1;
+					createSparks(this.x, this.y + this.height/2, "FFFFFF");
+				}
 			}
 		}
+		if (checkCollision(this, player)){
+			location.reload();
+		}
+		ctx.fillStyle = this.color;
+		this.render()
 	}
-	if (checkCollision(this, player)){
-		location.reload();
-	}
-	this.render();
-}
-
 ///adding things
 var player = new Player (window.innerWidth/2, window.innerHeight/2, makeStandardWidth(30), makeStandardWidth(30));
 var gravityBarBack = new RectColored (95, 30, 150, 15, "#FFFFFF");
@@ -86,7 +97,7 @@ function main() {
 	//text
 	ctx.textAlign = "left";
 	ctx.fillStyle = "#ffffff";
-	ctx.font = "small-caps lighter 30px Montserrat";
+	ctx.font = "small-caps lighter 30px Arial";
 	ctx.fillText("Time: " + Math.trunc(timer), makeStandardWidth(200), makeStandardHeight(100));
 	if (timer >= 0 && timer < 21)
 		ctx.fillText("Stay Alive For As Long As You Can!", window.innerWidth /2, makeStandardHeight(100));
