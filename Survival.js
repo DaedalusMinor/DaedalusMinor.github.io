@@ -1,56 +1,60 @@
 //COMMENT YOUR STUFF PLEASE
 
-//.prototype allows you to edit class functions in base.js
-Bullet.prototype.update = function() {
+class EnemyFriendlyBullet extends Bullet {
+	//a bullet that does not kill enemies
+	update() {
 		this.y += this.dy;
 		this.x += this.dx;
 		for (var i = 0; i < barrierArray.length; i++) {
-			if (checkCollision(this, barrierArray[i])){
+			if (checkCollision(this, barrierArray[i])){	
 				var direct = eject(this, barrierArray[i]);
 				/*Checks to see whether the bullet entered the wall horizontally and/or vertically, and changes
 				its orientation appropriately*/
-				if (direct[0]){ //horizontal
+				if (direct[0] || direct[1]){ //horizontal
 					this.dx *= -1;
-					createSparks(this.x - this.width/2, this.y, "FFFFFF");
 				}
-				else if(direct[1]){
-					this.dx *= -1
-					createSparks(this.x + this.width/2, this.y, "FFFFFF");
-				}
-
-				if (direct[2]){ //vertical
+				if (direct[2] || direct[3]){ //vertical
 					this.dy *= -1;
-					createSparks(this.x, this.y - this.height/2, "FFFFFF");
-				}
-				else if(direct[3]){
-					this.dy *= -1;
-					createSparks(this.x, this.y + this.height/2, "FFFFFF");
-				}
+				}	
 			}
-		}
+		}	
 		if (checkCollision(this, player)){
 			location.reload();
 		}
 		ctx.fillStyle = this.color;
-		this.render()
+		this.render();
 	}
+}
+class SurvivalEnemy extends Enemy {
+	shoot() {
+		//shoots the enemy-friendly bullets
+		this.shootTimer = 0;
+		var yBuffer = this.y + this.buffer * Math.sin(this.theta);
+		var xBuffer = this.x + this.buffer * Math.cos(this.theta);
+		bulletArray.push(new EnemyFriendlyBullet(xBuffer, yBuffer, 4*Math.cos(this.theta), 4*Math.sin(this.theta)));
+	}
+}
+
 ///adding things
-var player = new Player (window.innerWidth/2, window.innerHeight/2, makeStandardWidth(30), makeStandardWidth(30));
+player = new Player(window.innerWidth/2, window.innerHeight/2,
+	makeStandardWidth(50), makeStandardHeight(50), -1);
 var gravityBarBack = new RectColored (95, 30, 150, 15, "#FFFFFF");
 var gravityBar = new EnergyBar (95, 30, 150, 15, null);
-var enemy = new Enemy (makeStandardWidth(960), makeStandardHeight(200), makeStandardWidth(30), makeStandardHeight(30));
-var topWall = new Wall(window.innerWidth/2, -20, window.innerWidth, 40);	//upper border
-var leftWall = new Wall(-20, window.innerHeight/2, 40, window.innerHeight);	//left border
-var rightWall = new Wall(window.innerWidth+20, window.innerHeight/2, 40, window.innerHeight);	//right border
-var bottomWall = new Wall(window.innerWidth/2, window.innerHeight+20, window.innerWidth, 40);	//lower border
+var enemy = new SurvivalEnemy(makeStandardWidth(960), makeStandardHeight(200),
+	makeStandardWidth(50), makeStandardHeight(50));
 var fps = 0;
 var timer = 0;
 
 //barriers
+var topWall = new Wall(window.innerWidth/2, -20, window.innerWidth, 40);	//upper border
+var leftWall = new Wall(-20, window.innerHeight/2, 40, window.innerHeight);	//left border
+var rightWall = new Wall(window.innerWidth+20, window.innerHeight/2, 40, window.innerHeight);	//right border
+var bottomWall = new Wall(window.innerWidth/2, window.innerHeight+20, window.innerWidth, 40);	//lower border
 barrierArray.push(topWall);
 barrierArray.push(leftWall);
 barrierArray.push(rightWall);
 barrierArray.push(bottomWall);
+
 enemyArray.push(enemy);
 rectArray.push(gravityBarBack);
 rectArray.push(gravityBar);
@@ -67,12 +71,16 @@ window.onload = function() {
 }
 
 function main() {
+	//somehow, these two values are swapped when loading Survival.js,
+	//if that problem could be found, this wouldn't be needed
+	HEIGHT = 969;
+	WIDTH  = 1920;
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
 	//clear screen
 	ctx.fillStyle = "#110422";
 	ctx.fillRect(0,0, window.innerWidth, window.innerHeight);
-
+	
 	fps += 1;
 	if (fps == 60) {
 		timer += 1;
@@ -93,16 +101,16 @@ function main() {
 	for (var i = 0; i < bulletArray.length; i++){
 		bulletArray[i].update();
 	}
-
+	
 	//text
 	ctx.textAlign = "left";
 	ctx.fillStyle = "#ffffff";
-	ctx.font = "small-caps lighter 30px Arial";
+	ctx.font = "small-caps lighter 30px Montserrat";
 	ctx.fillText("Time: " + Math.trunc(timer), makeStandardWidth(200), makeStandardHeight(100));
 	if (timer >= 0 && timer < 21)
 		ctx.fillText("Stay Alive For As Long As You Can!", window.innerWidth /2, makeStandardHeight(100));
 	}
-
+	
 function keydown(e) {
 	switch(e.keyCode) {
 		case 65://move left
